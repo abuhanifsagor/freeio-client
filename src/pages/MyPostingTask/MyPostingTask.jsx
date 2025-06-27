@@ -24,7 +24,7 @@ const MyPostingTask = () => {
       });
   }, [user]);
 
-  if (!mytask) return <Loading></Loading> ;
+  if (!mytask) return  ;
 
   const handleDeleteTask = (deleteTaskId) => {
     Swal.fire({

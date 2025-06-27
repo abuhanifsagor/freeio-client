@@ -19,6 +19,8 @@ import ErrorPage from "../pages/ErrorPage/ErrorPage";
 import AddTask from "../pages/AddTask/AddTask";
 import MyPostingTask from "../pages/MyPostingTask/MyPostingTask";
 import BrowseTasks from "../pages/BrowseTasks/BrowseTasks";
+import DashboardLayout from "../pages/Dashboard/DashboardLayout";
+import DashboardOverview from "../pages/Dashboard/DashboardOverview";
 
 async function loadTaskData() {
   try {
@@ -42,6 +44,7 @@ async function loadAllTaskData() {
 }
 
 const router = createBrowserRouter([
+  //  Public Layout with Navbar & Footer
   {
     path: "/",
     element: <Root />,
@@ -70,7 +73,7 @@ const router = createBrowserRouter([
             }
             return taskData;
           } catch (error) {
-            console.error("Error  Task data :", error);
+            console.error("Error Task data:", error);
             throw new Response("Task data not found", { status: 404 });
           }
         },
@@ -85,7 +88,7 @@ const router = createBrowserRouter([
       {
         path: "/auth",
         children: [
-          { 
+          {
             path: "login",
             element: (
               <PublicRoute>
@@ -110,29 +113,13 @@ const router = createBrowserRouter([
         ],
       },
       {
-        path: "/my-profile",
-        element: (
-          <PrivateRoute>
-            <MyProfile />
-          </PrivateRoute>
-        ),
-      },
-      {
-        path: "/add-task",
-        element: (
-          <PrivateRoute>
-            <AddTask />
-          </PrivateRoute>
-        ),
-      },
-      {
         path: "/about",
         element: <About />,
       },
       {
-        path: "/all-Tasks",
+        path: "/all-tasks",
         loader: loadAllTaskData,
-        element: <BrowseTasks></BrowseTasks>,
+        element: <BrowseTasks />,
         hydrateFallbackElement: <Loading />,
       },
       {
@@ -156,17 +143,55 @@ const router = createBrowserRouter([
         loader: loadAllTaskData,
         element: (
           <PrivateRoute>
-            <MyPostingTask></MyPostingTask>
+            <MyPostingTask />
           </PrivateRoute>
         ),
         hydrateFallbackElement: <Loading />,
       },
     ],
   },
+
+  //  Dashboard Layout
+  {
+    path: "/dashboard",
+    element: (
+      <PrivateRoute>
+        <DashboardLayout />
+      </PrivateRoute>
+    ),
+    children: [
+      {
+        index: true,
+        loader: loadAllTaskData,
+        element: <DashboardOverview />,
+      },
+      {
+        path: "all-tasks",
+        loader: loadAllTaskData,
+        element: <BrowseTasks />,
+      },
+      {
+        path: "my-posted-task",
+        loader: loadAllTaskData,
+        element: <MyPostingTask />,
+      },
+      {
+        path: "add-task",
+        element: <AddTask />,
+      },
+      {
+        path: "my-profile",
+        element: <MyProfile />,
+      },
+    ],
+  },
+
+  // 404 route
   {
     path: "*",
     element: <NotFoundPage />,
   },
 ]);
+
 
 export default router;

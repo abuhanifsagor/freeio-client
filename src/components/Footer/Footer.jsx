@@ -1,4 +1,5 @@
 import React from "react";
+import logo from "/Logo.png";
 import { NavLink } from "react-router-dom";
 import {
   FaFacebookF,
@@ -8,13 +9,18 @@ import {
 } from "react-icons/fa";
 
 const Footer = () => {
-
   const navLinkClass = ({ isActive }) =>
     isActive ? "underline opcity-100 text-blue-300" : "hover:underline";
 
   return (
     <footer className="bg-[#1F4B3F]  text-white pb-5 pt-20 rounded-t-[50px]">
       {/* Top Row: Links & Social */}
+      <div className="container flex items-center justify-center flex-col mx-auto  w-full mb-4  -mt-5  pl-3 md:items-start">
+        <img src={logo} alt="" />
+        <p className="mt-4 text-sm text-gray-400 ">
+          Connecting people and creating opportunities.
+        </p>
+      </div>
       <div className="container mx-auto px-4 flex flex-col md:flex-row justify-between items-center border-b border-[#ffffff3a] pb-6">
         <ul className="flex gap-6 text-sm">
           <li>
@@ -22,6 +28,7 @@ const Footer = () => {
               Terms of Service
             </NavLink>
           </li>
+
           <li>
             <NavLink to="/privacy" className={navLinkClass}>
               Privacy Policy
@@ -37,7 +44,7 @@ const Footer = () => {
           <h2 className="text-base font-semibold">Follow Us</h2>
           <div className="flex scial gap-3">
             <a
-              href="https://www.facebook.com/"
+              href="https://www.facebook.com/nobody.to.anyone"
               target="_blank"
               rel="noopener noreferrer"
               className="hover:text-blue-600 duration-200"
@@ -46,7 +53,7 @@ const Footer = () => {
               <FaFacebookF />
             </a>
             <a
-              href="https://twitter.com/"
+              href="https://x.com/A_D_Or"
               target="_blank"
               rel="noopener noreferrer"
               className="hover:text-blue-400 duration-200"
@@ -55,7 +62,7 @@ const Footer = () => {
               <FaTwitter />
             </a>
             <a
-              href="https://www.instagram.com/"
+              href="https://www.instagram.com/a_d_or/"
               target="_blank"
               rel="noopener noreferrer"
               className="hover:text-pink-600 duration-200"

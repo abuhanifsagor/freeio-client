@@ -72,8 +72,17 @@ const Navbar = () => {
               <li>
                 <NavLink to="/all-Tasks">All Task</NavLink>
               </li>
-
               <li>
+                <NavLink to="/about">About us</NavLink>
+              </li>
+              <li>
+                <NavLink to="/dashboard">Dashboard</NavLink>
+              </li>
+              <li>
+                <NavLink to="/contact">Contact</NavLink>
+              </li>
+
+              {/* <li>
                 <NavLink to="/add-task">Add Task</NavLink>
               </li>
               {user ? (
@@ -82,7 +91,7 @@ const Navbar = () => {
                 </li>
               ) : (
                 ""
-              )}
+              )} */}
             </ul>
           </div>
           <img loading="lazy" className="w-25 ml-2" src={logo} alt="" />
@@ -97,7 +106,15 @@ const Navbar = () => {
               <NavLink to="/all-Tasks">All Task</NavLink>
             </li>
 
-            <li>
+            <li className="mr-4">
+              <NavLink to="/about">About us</NavLink>
+            </li>
+
+            <li className="mr-4">
+              <NavLink to="/dashboard">Dashboard</NavLink>
+            </li>
+
+            {/* <li>
               <NavLink to="/add-task">Add Task</NavLink>
             </li>
 
@@ -107,7 +124,7 @@ const Navbar = () => {
               </li>
             ) : (
               ""
-            )}
+            )} */}
 
             <li className="mr-4">
               <NavLink to="/contact">Contact</NavLink>
